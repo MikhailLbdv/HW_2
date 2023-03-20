@@ -16,7 +16,7 @@ public class HW_3 {
         Configuration.browser = "chrome";
         Configuration.browserSize = "1920x1080";
         Configuration.baseUrl = "https://demoqa.com/automation-practice-form";
-        Configuration.holdBrowserOpen = true;
+//        Configuration.holdBrowserOpen = true;
     }
 
     @Test
@@ -51,9 +51,17 @@ public class HW_3 {
         $("#stateCity-wrapper").$(byText("Agra")).click();
         $("#submit").sendKeys(Keys.ENTER);     // ?? click();
 
-//        $("#example-modal-sizes-title-lg").shouldHave(text("Thanks for submitting the form"));
-//        $(".table-responsive").shouldHave(text("M L"), text("H_W_3@gmail.com"), text("Male"), text("8005553535"), text("01 January,2000"),
- //               text("History"), text("Sports, Reading, Music"), text("HW3.png"), text("Current Address"), text(""), text("Uttar Pradesh Agra"));
-
+        $("#example-modal-sizes-title-lg").shouldHave(text("Thanks for submitting the form"));
+        $(".table-responsive").shouldHave(text("M L"));
+        $(".table-responsive").shouldHave(text("H_W_3@gmail.com"));
+        $(".table-responsive").shouldHave(text("Male"));
+        $(".table-responsive").shouldHave(text("8005553535"));
+        $(".table-responsive").shouldHave(text("01 January,2000"));
+        $(".table-responsive").shouldHave(text("History"));
+        $(".table-responsive").shouldHave(text("Sports, Reading, Music"));
+        $(".table-responsive").shouldHave(text("HW3.png"));
+        $(".table-responsive").shouldHave(text("Current Address"));
+        $(".table-responsive").shouldHave(text("Uttar Pradesh Agra"));
+        $("#closeLargeModal").click();
     }
 }
