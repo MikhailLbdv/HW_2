@@ -14,8 +14,6 @@ import static com.codeborne.selenide.Selenide.*;
 public class RegistrationPage  {
     private CalendarComponent calendarComponent = new CalendarComponent();
     private SelenideElement
-            firstNameInput = $("#firstName"),
-            lastNameInput = $("#lastName"),
             dateOfBirthInput = $("#dateOfBirthInput");
 
     public void openPage(){
