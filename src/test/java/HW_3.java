@@ -49,6 +49,7 @@ public class HW_3 {
         new RegistrationPage().checkDateOfBirth();
         new RegistrationPage().checkSubjects();
         new RegistrationPage().checkHobbies();
+        new RegistrationPage().checkPicture();
         new RegistrationPage().checkAddress();
         new RegistrationPage().checkStateAndCCity();
         new RegistrationPage().clickCloseLargeModal();
