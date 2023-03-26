@@ -17,7 +17,7 @@ public class HW_3 extends TestBase {
     void fillFormTest() {
 
         new RegistrationPage().openPage();
-//        .setBirthDate("30", "July", "2008");
+
 
         new RegistrationPage().setFirstName();
         new RegistrationPage().setLastName();
