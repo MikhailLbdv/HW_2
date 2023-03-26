@@ -11,16 +11,13 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
-public class HW_3 {
-    @BeforeAll
-    static void beforeAll() {
-        new RegistrationPage().settings();
-    }
+public class HW_3 extends TestBase {
 
     @Test
     void fillFormTest() {
 
         new RegistrationPage().openPage();
+//        .setBirthDate("30", "July", "2008");
 
         new RegistrationPage().setFirstName();
         new RegistrationPage().setLastName();
@@ -28,9 +25,7 @@ public class HW_3 {
         new RegistrationPage().setGender();
         new RegistrationPage().setUserNumber();
         new RegistrationPage().clickDateOfBirth();
-        new RegistrationPage().clickYear();
-        new RegistrationPage().clickMonth();
-        new RegistrationPage().setDay();
+        new RegistrationPage().setBirthDate("01", "January", "2000");
         new RegistrationPage().setSubjects();
         new RegistrationPage().setHobbies();
         new RegistrationPage().setPicture();

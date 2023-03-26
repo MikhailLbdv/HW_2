@@ -2,6 +2,8 @@ package pages;
 
 import com.codeborne.selenide.Configuration;
 import org.openqa.selenium.Keys;
+import com.codeborne.selenide.SelenideElement;
+import pages.components.CalendarComponent;
 
 import java.io.File;
 
@@ -10,12 +12,12 @@ import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
 public class RegistrationPage  {
-    public void settings(){
-        Configuration.browser = "chrome";
-        Configuration.browserSize = "1920x1080";
-        Configuration.baseUrl = "https://demoqa.com/automation-practice-form";
-        Configuration.holdBrowserOpen = true;
-    }
+    private CalendarComponent calendarComponent = new CalendarComponent();
+    private SelenideElement
+            firstNameInput = $("#firstName"),
+            lastNameInput = $("#lastName"),
+            dateOfBirthInput = $("#dateOfBirthInput");
+
     public void openPage(){
         open("https://demoqa.com/automation-practice-form");
         executeJavaScript("$('footer').remove()"); // убираем баннер
@@ -39,14 +41,9 @@ public class RegistrationPage  {
     public void clickDateOfBirth(){
         $("#dateOfBirthInput").click();
     }
-    public void clickYear(){
-        $(".react-datepicker__year-select").$(byText("2000")).click();
-    }
-    public void clickMonth(){
-        $(".react-datepicker__month-select").$(byText("January")).click();
-    }
-    public void setDay(){
-        $(".react-datepicker__month").$(byText("1")).click();
+    public void setBirthDate(String day, String month, String year) {
+        dateOfBirthInput.click();
+        calendarComponent.setDate(day, month, year);;
     }
     public void setSubjects(){
         $("#subjectsInput").setValue("History").pressEnter();
