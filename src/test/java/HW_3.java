@@ -12,41 +12,41 @@ import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
 public class HW_3 extends TestBase {
+    RegistrationPage registrationPage = new RegistrationPage();
 
     @Test
     void fillFormTest() {
 
-        new RegistrationPage().openPage();
+        registrationPage.openPage()
+                .closeBanner()
+                .setFirstName()
+                .setLastName()
+                .setUserEmail()
+                .setGender()
+                .setUserNumber()
+                .clickDateOfBirth()
+                .setBirthDate("01", "January", "2000")
+                .setSubjects()
+                .setHobbies()
+                .setPicture()
+                .setCurrentAddress()
+                .clickState()
+                .setStateCity()
+                .clickCity()
+                .setCity()
+                .clickSubmit();
 
-
-        new RegistrationPage().setFirstName();
-        new RegistrationPage().setLastName();
-        new RegistrationPage().setUserEmail();
-        new RegistrationPage().setGender();
-        new RegistrationPage().setUserNumber();
-        new RegistrationPage().clickDateOfBirth();
-        new RegistrationPage().setBirthDate("01", "January", "2000");
-        new RegistrationPage().setSubjects();
-        new RegistrationPage().setHobbies();
-        new RegistrationPage().setPicture();
-        new RegistrationPage().setCurrentAddress();
-        new RegistrationPage().clickState();
-        new RegistrationPage().setStateCity();
-        new RegistrationPage().clickCity();
-        new RegistrationPage().setCity();
-        new RegistrationPage().clickSubmit();
-
-        new RegistrationPage().checkExampleModal();
-        new RegistrationPage().checkStudentName();
-        new RegistrationPage().checkStudentEmail();
-        new RegistrationPage().checkGender();
-        new RegistrationPage().checkMobile();
-        new RegistrationPage().checkDateOfBirth();
-        new RegistrationPage().checkSubjects();
-        new RegistrationPage().checkHobbies();
-        new RegistrationPage().checkPicture();
-        new RegistrationPage().checkAddress();
-        new RegistrationPage().checkStateAndCCity();
-        new RegistrationPage().clickCloseLargeModal();
+        registrationPage.checkExampleModal()
+                .checkStudentName()
+                .checkStudentEmail()
+                .checkGender()
+                .checkMobile()
+                .checkDateOfBirth()
+                .checkSubjects()
+                .checkHobbies()
+                .checkPicture()
+                .checkAddress()
+                .checkStateAndCCity()
+                .clickCloseLargeModal();
     }
 }

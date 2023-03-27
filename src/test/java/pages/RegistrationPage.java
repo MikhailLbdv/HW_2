@@ -14,96 +14,131 @@ import static com.codeborne.selenide.Selenide.*;
 public class RegistrationPage  {
     private CalendarComponent calendarComponent = new CalendarComponent();
     private SelenideElement
+            setFirstNameInput = $("#firstName"),
+            setLastNameInput = $("#lastName"),
+            setUserEmailInput = $("#userEmail"),
             dateOfBirthInput = $("#dateOfBirthInput");
 
-    public void openPage(){
-        open("https://demoqa.com/automation-practice-form");
+    public RegistrationPage openPage(){
+        open("/automation-practice-form");
+        return this;
+    }
+    public RegistrationPage closeBanner(){
         executeJavaScript("$('footer').remove()"); // убираем баннер
         executeJavaScript("$('#fixedban').remove()");
+        return this;
     }
-     public void setFirstName(){
-         $("#firstName").setValue("M");
+     public RegistrationPage setFirstName(){
+         setFirstNameInput.setValue("M");
+         return this;
      }
-    public void setLastName(){
-        $("#lastName").setValue("L");
+    public RegistrationPage setLastName(){
+        setLastNameInput.setValue("L");
+        return this;
     }
-    public void setUserEmail(){
-        $("#userEmail").setValue("H_W_3@gmail.com");
+    public RegistrationPage setUserEmail(){
+        setUserEmailInput.setValue("H_W_3@gmail.com");
+        return this;
     }
-    public void setGender(){
+    public RegistrationPage setGender(){
         $("#gender-radio-1").sendKeys(" ");
+        return this;
     }
-    public void setUserNumber(){
+    public RegistrationPage setUserNumber(){
         $("#userNumber").setValue("8005553535");
+        return this;
     }
-    public void clickDateOfBirth(){
+    public RegistrationPage clickDateOfBirth(){
         $("#dateOfBirthInput").click();
+        return this;
     }
-    public void setBirthDate(String day, String month, String year) {
+    public RegistrationPage setBirthDate(String day, String month, String year) {
         dateOfBirthInput.click();
         calendarComponent.setDate(day, month, year);;
+        return this;
     }
-    public void setSubjects(){
+    public RegistrationPage setSubjects(){
         $("#subjectsInput").setValue("History").pressEnter();
+        return this;
     }
-    public void setHobbies(){
+    public RegistrationPage setHobbies(){
         $("#hobbies-checkbox-1").parent().$(byText("Sports")).click();
+        return this;
     }
-    public void setPicture(){
+    public RegistrationPage setPicture(){
         $("#uploadPicture").uploadFile(new File("src/test/resources/pictures/HW3.png"));
+        return this;
     }
-    public void setCurrentAddress(){
+    public RegistrationPage setCurrentAddress(){
         $("#currentAddress").setValue("Current Address");
+        return this;
     }
-    public void clickState(){
+    public RegistrationPage clickState(){
         $("#state").click();
+        return this;
     }
-    public void setStateCity(){
+    public RegistrationPage setStateCity(){
         $("#stateCity-wrapper").$(byText("Uttar Pradesh")).click();
+        return this;
     }
-    public void clickCity(){
+    public RegistrationPage clickCity(){
         $("#city").click();
+        return this;
     }
-    public void setCity(){
+    public RegistrationPage setCity(){
         $("#stateCity-wrapper").$(byText("Agra")).click();
+        return this;
     }
-    public void clickSubmit(){
+    public RegistrationPage clickSubmit(){
         $("#submit").sendKeys(Keys.ENTER);
+        return this;
     }
-    public void checkExampleModal(){
+    public RegistrationPage checkExampleModal(){
         $("#example-modal-sizes-title-lg").shouldHave(text("Thanks for submitting the form"));
+        return this;
     }
-    public void checkStudentName(){
+    public RegistrationPage checkStudentName(){
         $(".table-responsive").shouldHave(text("M L"));
+        return this;
     }
-    public void checkStudentEmail(){
+    public RegistrationPage checkStudentEmail(){
         $(".table-responsive").shouldHave(text("H_W_3@gmail.com"));
+        return this;
     }
-    public void checkGender(){
+    public RegistrationPage checkGender(){
         $(".table-responsive").shouldHave(text("Male"));
+        return this;
     }
-    public void checkMobile(){
+    public RegistrationPage checkMobile(){
         $(".table-responsive").shouldHave(text("8005553535"));
+        return this;
     }
-    public void checkDateOfBirth(){
+    public RegistrationPage checkDateOfBirth(){
         $(".table-responsive").shouldHave(text("01 January,2000"));
+        return this;
     }
-    public void checkSubjects(){
+    public RegistrationPage checkSubjects(){
         $(".table-responsive").shouldHave(text("History"));
+        return this;
     }
-    public void checkHobbies(){
+    public RegistrationPage checkHobbies(){
         $(".table-responsive").shouldHave(text("Sports"));
+        return this;
     }
-    public void checkPicture(){
+    public RegistrationPage checkPicture(){
         $(".table-responsive").shouldHave(text("HW3.png"));
+        return this;
     }
-    public void checkAddress(){
+    public RegistrationPage checkAddress(){
         $(".table-responsive").shouldHave(text("Current Address"));
+        return this;
     }
-    public void checkStateAndCCity(){
+    public RegistrationPage checkStateAndCCity(){
         $(".table-responsive").shouldHave(text("Uttar Pradesh Agra"));
+        return this;
     }
-    public void clickCloseLargeModal(){
+    public RegistrationPage clickCloseLargeModal(){
         $("#closeLargeModal").click();
+        return this;
     }
 }
