@@ -4,6 +4,7 @@ import com.codeborne.selenide.Configuration;
 import org.openqa.selenium.Keys;
 import com.codeborne.selenide.SelenideElement;
 import pages.components.CalendarComponent;
+import pages.components.RegistrationResultsModal;
 
 import java.io.File;
 
@@ -13,11 +14,23 @@ import static com.codeborne.selenide.Selenide.*;
 
 public class RegistrationPage  {
     private CalendarComponent calendarComponent = new CalendarComponent();
+    private RegistrationResultsModal registrationResultsModal = new RegistrationResultsModal();
     private SelenideElement
             setFirstNameInput = $("#firstName"),
             setLastNameInput = $("#lastName"),
             setUserEmailInput = $("#userEmail"),
-            dateOfBirthInput = $("#dateOfBirthInput");
+            setGenderInput = $("#genterWrapper"),
+            setUserNumberInput = $("#userNumber"),
+            dateOfBirthInput = $("#dateOfBirthInput"),
+            setSubjectsInput = $("#subjectsInput"),
+            setHobbiesInput = $("#hobbies-checkbox-1"),
+            setPictureInput = $("#uploadPicture"),
+            setCurrentAddressInput = $("#currentAddress"),
+            clickStateInput = $("#state"),
+            setStateCityInput = $("#stateCity-wrapper"),
+            clickCityInput = $("#city"),
+            setCityInput = $("#stateCity-wrapper"),
+            clickSubmitInput = $("#submit");
 
     public RegistrationPage openPage(){
         open("/automation-practice-form");
@@ -28,28 +41,24 @@ public class RegistrationPage  {
         executeJavaScript("$('#fixedban').remove()");
         return this;
     }
-     public RegistrationPage setFirstName(){
-         setFirstNameInput.setValue("M");
-         return this;
-     }
-    public RegistrationPage setLastName(){
-        setLastNameInput.setValue("L");
+    public RegistrationPage setFirstName(String value){
+        setFirstNameInput.setValue(value);
         return this;
     }
-    public RegistrationPage setUserEmail(){
-        setUserEmailInput.setValue("H_W_3@gmail.com");
+    public RegistrationPage setLastName(String value){
+        setLastNameInput.setValue(value);
         return this;
     }
-    public RegistrationPage setGender(){
-        $("#gender-radio-1").sendKeys(" ");
+    public RegistrationPage setUserEmail(String value){
+        setUserEmailInput.setValue(value);
         return this;
     }
-    public RegistrationPage setUserNumber(){
-        $("#userNumber").setValue("8005553535");
+    public RegistrationPage setGender(String value){
+        setGenderInput.$(byText(value)).click();
         return this;
     }
-    public RegistrationPage clickDateOfBirth(){
-        $("#dateOfBirthInput").click();
+    public RegistrationPage setUserNumber(String value){
+        setUserNumberInput.setValue(value);
         return this;
     }
     public RegistrationPage setBirthDate(String day, String month, String year) {
@@ -57,88 +66,48 @@ public class RegistrationPage  {
         calendarComponent.setDate(day, month, year);;
         return this;
     }
-    public RegistrationPage setSubjects(){
-        $("#subjectsInput").setValue("History").pressEnter();
+    public RegistrationPage setSubjects(String value){
+        setSubjectsInput.setValue(value).pressEnter();
         return this;
     }
-    public RegistrationPage setHobbies(){
-        $("#hobbies-checkbox-1").parent().$(byText("Sports")).click();
+    public RegistrationPage setHobbies(String value){
+        setHobbiesInput.parent().$(byText(value)).click();
         return this;
     }
-    public RegistrationPage setPicture(){
-        $("#uploadPicture").uploadFile(new File("src/test/resources/pictures/HW3.png"));
+    public RegistrationPage setPicture(String value){
+        setPictureInput.uploadFile(new File(value));
         return this;
     }
-    public RegistrationPage setCurrentAddress(){
-        $("#currentAddress").setValue("Current Address");
+    public RegistrationPage setCurrentAddress(String value){
+        setCurrentAddressInput.setValue(value);
         return this;
     }
     public RegistrationPage clickState(){
-        $("#state").click();
+        clickStateInput.click();
         return this;
     }
-    public RegistrationPage setStateCity(){
-        $("#stateCity-wrapper").$(byText("Uttar Pradesh")).click();
+    public RegistrationPage setStateCity(String value){
+        setStateCityInput.$(byText(value)).click();
         return this;
     }
     public RegistrationPage clickCity(){
-        $("#city").click();
+        clickCityInput.click();
         return this;
     }
-    public RegistrationPage setCity(){
-        $("#stateCity-wrapper").$(byText("Agra")).click();
+    public RegistrationPage setCity(String value){
+        setCityInput.$(byText(value)).click();
         return this;
     }
     public RegistrationPage clickSubmit(){
-        $("#submit").sendKeys(Keys.ENTER);
+        clickSubmitInput.sendKeys(Keys.ENTER);
         return this;
     }
-    public RegistrationPage checkExampleModal(){
-        $("#example-modal-sizes-title-lg").shouldHave(text("Thanks for submitting the form"));
+    public RegistrationPage verifyResultsModalAppears() {
+        registrationResultsModal.verifyModalAppears();
         return this;
     }
-    public RegistrationPage checkStudentName(){
-        $(".table-responsive").shouldHave(text("M L"));
-        return this;
-    }
-    public RegistrationPage checkStudentEmail(){
-        $(".table-responsive").shouldHave(text("H_W_3@gmail.com"));
-        return this;
-    }
-    public RegistrationPage checkGender(){
-        $(".table-responsive").shouldHave(text("Male"));
-        return this;
-    }
-    public RegistrationPage checkMobile(){
-        $(".table-responsive").shouldHave(text("8005553535"));
-        return this;
-    }
-    public RegistrationPage checkDateOfBirth(){
-        $(".table-responsive").shouldHave(text("01 January,2000"));
-        return this;
-    }
-    public RegistrationPage checkSubjects(){
-        $(".table-responsive").shouldHave(text("History"));
-        return this;
-    }
-    public RegistrationPage checkHobbies(){
-        $(".table-responsive").shouldHave(text("Sports"));
-        return this;
-    }
-    public RegistrationPage checkPicture(){
-        $(".table-responsive").shouldHave(text("HW3.png"));
-        return this;
-    }
-    public RegistrationPage checkAddress(){
-        $(".table-responsive").shouldHave(text("Current Address"));
-        return this;
-    }
-    public RegistrationPage checkStateAndCCity(){
-        $(".table-responsive").shouldHave(text("Uttar Pradesh Agra"));
-        return this;
-    }
-    public RegistrationPage clickCloseLargeModal(){
-        $("#closeLargeModal").click();
+    public RegistrationPage verifyResult(String key, String value) {
+        registrationResultsModal.verifyResult(key, value);
         return this;
     }
 }

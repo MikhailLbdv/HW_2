@@ -16,37 +16,49 @@ public class HW_3 extends TestBase {
 
     @Test
     void fillFormTest() {
+        String firstName = "M",
+                lastName = "L",
+                email = "H_W_3@gmail.com",
+                gender = "Male",
+                phoneNumber = "8005553535",
+                dayOfBirth = "01",
+                monthOfBirth = "January",
+                yearOfBirth = "2000",
+                subject = "History",
+                hobby = "Sports",
+                picture = "src/test/resources/pictures/HW3.png",
+                address = "Current Address",
+                state = "Uttar Pradesh",
+                city = "Agra";
 
         registrationPage.openPage()
                 .closeBanner()
-                .setFirstName()
-                .setLastName()
-                .setUserEmail()
-                .setGender()
-                .setUserNumber()
-                .clickDateOfBirth()
-                .setBirthDate("01", "January", "2000")
-                .setSubjects()
-                .setHobbies()
-                .setPicture()
-                .setCurrentAddress()
+                .setFirstName(firstName)
+                .setLastName(lastName)
+                .setUserEmail(email)
+                .setGender(gender)
+                .setUserNumber(phoneNumber)
+                .setBirthDate(dayOfBirth, monthOfBirth, yearOfBirth)
+                .setSubjects(subject)
+                .setHobbies(hobby)
+                .setPicture(picture)
+                .setCurrentAddress(address)
                 .clickState()
-                .setStateCity()
+                .setStateCity(state)
                 .clickCity()
-                .setCity()
+                .setCity(city)
                 .clickSubmit();
 
-        registrationPage.checkExampleModal()
-                .checkStudentName()
-                .checkStudentEmail()
-                .checkGender()
-                .checkMobile()
-                .checkDateOfBirth()
-                .checkSubjects()
-                .checkHobbies()
-                .checkPicture()
-                .checkAddress()
-                .checkStateAndCCity()
-                .clickCloseLargeModal();
+        registrationPage.verifyResultsModalAppears()
+                .verifyResult("Student Name", firstName +" "+ lastName)
+                .verifyResult("Student Email", email)
+                .verifyResult("Gender", gender)
+                .verifyResult("Mobile", phoneNumber)
+                .verifyResult("Date of Birth", dayOfBirth +" "+ monthOfBirth + "," + yearOfBirth)
+                .verifyResult("Subjects", subject)
+                .verifyResult("Hobbies", hobby)
+                .verifyResult("Picture", "HW3.png")
+                .verifyResult("Address", address)
+                .verifyResult("State and City", state +" "+ city);
     }
 }
