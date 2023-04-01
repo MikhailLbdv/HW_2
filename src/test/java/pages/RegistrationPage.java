@@ -23,7 +23,7 @@ public class RegistrationPage  {
             setUserNumberInput = $("#userNumber"),
             dateOfBirthInput = $("#dateOfBirthInput"),
             setSubjectsInput = $("#subjectsInput"),
-            setHobbiesInput = $("#hobbies-checkbox-1"),
+            setHobbiesInput = $("#hobbiesWrapper"),
             setPictureInput = $("#uploadPicture"),
             setCurrentAddressInput = $("#currentAddress"),
             clickStateInput = $("#state"),
