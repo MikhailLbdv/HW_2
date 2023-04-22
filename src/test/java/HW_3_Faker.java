@@ -1,17 +1,20 @@
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import pages.RegistrationPage;
 import com.github.javafaker.Faker;
 import java.util.concurrent.ThreadLocalRandom;
 
+import static io.qameta.allure.Allure.step;
 import static utils.RandomUtils.getRandomInt;
 
-public class HW_3_Faker extends TestBase {
+public class HW_3_Faker extends TеstBaseJenkins {
     RegistrationPage registrationPage = new RegistrationPage();
     Faker faker = new Faker();
 
 
 
     @Test
+    @Tag("remote")
     void fillFormTest() {
         String firstName = faker.name().firstName(),
                 lastName = faker.name().lastName(),
@@ -29,6 +32,7 @@ public class HW_3_Faker extends TestBase {
                 state = "Uttar Pradesh",
                 city = faker.options().option("Agra", "Lucknow", "Merrut");
 
+        step("Fill form", () -> {
         registrationPage.openPage()
                 .closeBanner()
                 .setFirstName(firstName)
@@ -46,7 +50,9 @@ public class HW_3_Faker extends TestBase {
                 .clickCity()
                 .setCity(city)
                 .clickSubmit();
+        });
 
+        step("Verify results", () -> {
         registrationPage.verifyResultsModalAppears()
                 .verifyResult("Student Name", firstName +" "+ lastName)
                 .verifyResult("Student Email", email)
@@ -58,5 +64,6 @@ public class HW_3_Faker extends TestBase {
                 .verifyResult("Picture", "HW3.png")
                 .verifyResult("Address", address)
                 .verifyResult("State and City", state +" "+ city);
+        });
     }
 }
