@@ -13,12 +13,18 @@ public class TеstBaseJenkins {
 
     @BeforeAll
     static void beforeAll() {
-        Configuration.browser = "chrome";
+
+        Configuration.browserSize = System.getProperty("browserSize","1920x1080");
+        Configuration.browser = System.getProperty("browser", "chrome");
+        Configuration.browserVersion = System.getProperty("browserVersion", "100.0");
+        Configuration.baseUrl = System.getProperty("baseUrl", "https://demoqa.com");
+        Configuration.remote = "https://user1:1234@"+ System.getProperty("selenoidUrl", "selenoid.autotests.cloud/wd/hub");
+//        Configuration.browser = "chrome";
 //        Configuration.browserVersion = "100.0";
-        Configuration.browserSize = "1920x1080";
-        Configuration.baseUrl = "https://demoqa.com";
+//        Configuration.browserSize = "1920x1080";
+//        Configuration.baseUrl = "https://demoqa.com";
 //        Configuration.holdBrowserOpen = true;
-        Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub"; // Запускаем тест на Selenoid
+//        Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub"; // Запускаем тест на Selenoid
 
         DesiredCapabilities capabilities = new DesiredCapabilities(); // Добавляем запись видео
         capabilities.setCapability("selenoid:options", Map.<String, Object>of(
