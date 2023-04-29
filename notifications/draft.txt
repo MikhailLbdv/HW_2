@@ -3,11 +3,9 @@
  Chat id: -1001927586931
 
  Fetch bot updates and look for the chat id:
- curl https://api.telegram.org/bot$TELEGRAM_BOT_TOKEN/getUpdates | jq .message.chat.id
  curl https://api.telegram.org/bot6078649230:AAGTOozrucxMOUg7LUG_SkX1-bdsEe6l-IQ/getUpdates
 
  Send a message using the HTTP API:
- curl -X POST  -H 'Content-Type: application/json' -d '{"chat_id": "123456789", "text": "This is a test from curl", "disable_notification": true}' https://api.telegram.org/bot$TELEGRAM_BOT_TOKEN/sendMessage
  curl -X POST  -H 'Content-Type: application/json' -d '{"chat_id": "-1001927586931", "text": "This is a test from mlbdv_hw_14", "disable_notification": true}' https://api.telegram.org/bot6078649230:AAGTOozrucxMOUg7LUG_SkX1-bdsEe6l-IQ/sendMessage
 
  Run jar with notifications
